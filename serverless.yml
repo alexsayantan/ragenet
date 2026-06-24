@@ -20,12 +20,15 @@ custom:
     dockerizePip: non-linux
 
 functions:
-  api:
-    handler: app.handler
+  signup:
+    handler: auth.signup.handler
     events:
       - httpApi:
           path: /signup
           method: post
+  signin:
+    handler: auth.signin.handler
+    events:
       - httpApi:
           path: /signin
           method: post
