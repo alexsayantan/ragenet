@@ -13,13 +13,19 @@ provider:
 
 plugins:
   - serverless-offline
+  - serverless-python-requirements
 
-
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
 
 functions:
-  hello:
-    handler: handler.hello
+  api:
+    handler: app.handler
     events:
       - httpApi:
-          path: /
-          method: get
+          path: /signup
+          method: post
+      - httpApi:
+          path: /signin
+          method: post
