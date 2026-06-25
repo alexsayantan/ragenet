@@ -6,10 +6,16 @@ service: ragenet
 provider:
   name: aws
   runtime: python3.12
-  # Uncomment to easily set up a custom domain. Read the docs for more details:
-  # https://www.serverless.com/framework/docs/providers/aws/guide/domains
-  # domain: api.example.com
 
+package:
+  patterns:
+    - '!**/__pycache__/**'
+    - '!**/*.pyc'
+    - '!.venv/**'
+    - '!.git/**'
+    - '!alembic/**'
+    - '!alembic.ini'
+    - '!README.md'
 
 plugins:
   - serverless-offline
