@@ -38,3 +38,9 @@ functions:
       - httpApi:
           path: /signin
           method: post
+  user-details:
+    handler: auth.user_details.handler
+    events:
+      - httpApi:
+          path: /user-details
+          method: get
