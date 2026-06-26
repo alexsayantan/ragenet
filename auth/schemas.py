@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from pydantic import BaseModel
 
 
@@ -18,3 +20,9 @@ class TokenResponse(BaseModel):
 
 class UserResponse(BaseModel):
     username: str
+
+
+class UserDetail(BaseModel):
+    id: int
+    username: str
+    created_at: datetime
