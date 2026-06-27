@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 
 class UserSignup(BaseModel):
+    email: str
     username: str
     password: str
 
@@ -23,6 +24,6 @@ class UserResponse(BaseModel):
 
 
 class UserDetail(BaseModel):
-    id: int
+    uuid: str
     username: str
     created_at: datetime

@@ -16,7 +16,7 @@ async def signup(body: UserSignup, session: Session = Depends(get_session)):
     if existing:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="Username already exists")
 
-    user = User(username=body.username, hashed_password=hash_password(body.password))
+    user = User(email=body.email, username=body.username, password=hash_password(body.password))
     session.add(user)
     session.commit()
     session.refresh(user)
