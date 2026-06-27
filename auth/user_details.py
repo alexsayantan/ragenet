@@ -12,7 +12,7 @@ app = FastAPI()
 @app.get("/user-details", response_model=UserDetail)
 async def user_details(current_user: User = Depends(get_current_user)):
     return UserDetail(
-        id=current_user.id,
+        uuid=str(current_user.uuid),
         username=current_user.username,
         created_at=current_user.created_at,
     )
