@@ -44,3 +44,9 @@ functions:
       - httpApi:
           path: /user-details
           method: get
+  check-username:
+    handler: auth.check_username.handler
+    events:
+      - httpApi:
+          path: /check-username
+          method: get
