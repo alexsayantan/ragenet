@@ -39,6 +39,7 @@ class UserDetail(SQLModel, table=True):
     __tablename__ = "user_details"
 
     id: UUID = Field(default_factory=uuid7, primary_key=True)
+    user_id: UUID = Field(foreign_key="users.id", nullable=False, unique=True)
     avatar: str | None = Field(default=None)
     avatar_blurhash: str | None = Field(default=None)
     bio: str | None = Field(default=None)

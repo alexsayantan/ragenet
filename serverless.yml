@@ -39,11 +39,14 @@ functions:
           path: /signin
           method: post
   user-details:
-    handler: auth.user_details.handler
+    handler: user.user_details.handler
     events:
       - httpApi:
           path: /user-details
           method: get
+      - httpApi:
+          path: /user-details
+          method: put
   check-username:
     handler: auth.check_username.handler
     events:
