@@ -53,3 +53,12 @@ functions:
       - httpApi:
           path: /check-username
           method: get
+  user-avatar:
+    handler: user.user_avatar.handler
+    events:
+      - httpApi:
+          path: /avatar
+          method: put
+      - httpApi:
+          path: /avatar
+          method: delete
