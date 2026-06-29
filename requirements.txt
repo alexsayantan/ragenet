@@ -8,3 +8,4 @@ sqlmodel
 psycopg-binary
 pydantic-settings
 alembic
+boto3
