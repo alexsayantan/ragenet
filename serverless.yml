@@ -53,6 +53,12 @@ functions:
       - httpApi:
           path: /check-username
           method: get
+  change-password:
+    handler: auth.change_password.handler
+    events:
+      - httpApi:
+          path: /change-password
+          method: put
   user-avatar:
     handler: user.user_avatar.handler
     events:

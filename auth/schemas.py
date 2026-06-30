@@ -27,3 +27,8 @@ class UserDetail(BaseModel):
     uuid: str
     username: str
     created_at: datetime
+
+
+class ChangePassword(BaseModel):
+    old_password: str
+    new_password: str
