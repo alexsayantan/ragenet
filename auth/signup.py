@@ -2,6 +2,7 @@ from fastapi import Depends, FastAPI, HTTPException, status
 from auth.schemas import UserResponse, UserSignup
 from common.security import hash_password
 from common.database import get_session
+from common.queue.sender import send_email_message
 from sqlmodel import Session, select
 from common.models.user import User
 from mangum import Mangum
@@ -20,6 +21,12 @@ async def signup(body: UserSignup, session: Session = Depends(get_session)):
     session.add(user)
     session.commit()
     session.refresh(user)
+
+    send_email_message(
+        to_email=user.email,
+        subject="Welcome to Ragenet!",
+        html_body=f"<h1>Welcome, {user.username}!</h1><p>Thank you for signing up.</p>",
+    )
 
     return UserResponse(username=user.username)
 
