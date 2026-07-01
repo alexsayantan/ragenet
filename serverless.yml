@@ -6,6 +6,24 @@ service: ragenet
 provider:
   name: aws
   runtime: python3.12
+  environment:
+    SQS_QUEUE_URL: !Ref EmailQueue
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - sqs:SendMessage
+            - sqs:ReceiveMessage
+            - sqs:DeleteMessage
+            - sqs:GetQueueAttributes
+          Resource:
+            - !GetAtt EmailQueue.Arn
+        - Effect: Allow
+          Action:
+            - ses:SendEmail
+            - ses:SendRawEmail
+          Resource: "*"
 
 package:
   patterns:
@@ -68,3 +86,18 @@ functions:
       - httpApi:
           path: /avatar
           method: delete
+  email-consumer:
+    handler: common.queue.consumer.handler
+    events:
+      - sqs:
+          arn: !GetAtt EmailQueue.Arn
+          batchSize: 10
+
+resources:
+  Resources:
+    EmailQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:service}-email-queue
+        VisibilityTimeout: 60
+        MessageRetentionPeriod: 86400

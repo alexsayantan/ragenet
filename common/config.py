@@ -11,6 +11,9 @@ class Settings(BaseSettings):
     cloudflare_r2_secret_access_key: str = ""
     cloudflare_r2_bucket_name: str = ""
     cloudflare_r2_public_url: str = ""
+    aws_region: str = "ap-south-1"
+    ses_source_email: str = ""
+    sqs_queue_url: str = ""
 
     model_config = {"env_prefix": ""}
 
