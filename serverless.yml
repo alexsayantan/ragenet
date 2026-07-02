@@ -50,12 +50,14 @@ functions:
       - httpApi:
           path: /signup
           method: post
+
   signin:
     handler: auth.signin.handler
     events:
       - httpApi:
           path: /signin
           method: post
+
   user-details:
     handler: user.user_details.handler
     events:
@@ -65,18 +67,35 @@ functions:
       - httpApi:
           path: /user-details
           method: put
+
   check-username:
     handler: auth.check_username.handler
     events:
       - httpApi:
           path: /check-username
           method: get
+
   change-password:
     handler: auth.change_password.handler
     events:
       - httpApi:
           path: /change-password
           method: put
+
+  forgot-password:
+    handler: auth.forgot_password.handler
+    events:
+      - httpApi:
+          path: /forgot-password
+          method: post
+
+  reset-password:
+    handler: auth.forgot_password.handler
+    events:
+      - httpApi:
+          path: /reset-password
+          method: post
+
   user-avatar:
     handler: user.user_avatar.handler
     events:
@@ -86,6 +105,7 @@ functions:
       - httpApi:
           path: /avatar
           method: delete
+
   email-consumer:
     handler: common.queue.consumer.handler
     events:

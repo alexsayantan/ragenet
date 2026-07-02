@@ -1,6 +1,5 @@
-from datetime import datetime
-
 from pydantic import BaseModel
+from datetime import datetime
 
 
 class UserSignup(BaseModel):
@@ -31,4 +30,13 @@ class UserDetail(BaseModel):
 
 class ChangePassword(BaseModel):
     old_password: str
+    new_password: str
+
+
+class ForgotPasswordRequest(BaseModel):
+    email: str
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
     new_password: str
